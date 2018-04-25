@@ -1,18 +1,31 @@
 'use strict';
 
 const pg = require('pg');
-const fs = require('fs');
+const cors = require('cors')
 const express = require('express');
 const app = express();
+
 const PORT = process.env.PORT;
+const CLIENT_URL = process.env.CLIENT_URL;
 
-const conString = '';
-const CLIENT = new pg.Client(conString);
+const CLIENT = new pg.Client(process.env.DATABASE_URL);
 client.connect();
+client.on('error', err => console.error(err));
 
-client.on('error', err => {
-  console.error(err);
+app.use(cors());
+app.get('/', (req, res) => res.redirect(CLIENT_URL)) ;
+
+app.get('/test/*', (req, res) => res.send('no further API routes'));
+
+app.get('/api/v1/books', (req, res) => {
+  client.query('SELECT * FROM books;')
+  .then(results => res.send(results.rows))
+  .catch(console.error);
 });
+
+app.get('*', (req, res) => res.send('404 service not found'));
+
+app.listen(PORT, () => console.log(`listening on port: ${PORT}`));
 
 
 
