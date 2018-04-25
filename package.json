@@ -20,6 +20,6 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "pg": "^6.1.2"
-  },
+    },
   "homepage": "https://github.com/Timea-Yannick/book-list-server#readme"
 }

@@ -9,8 +9,8 @@ const PORT = process.env.PORT;
 const CLIENT_URL = process.env.CLIENT_URL;
 
 const CLIENT = new pg.Client(process.env.DATABASE_URL);
-client.connect();
-client.on('error', err => console.error(err));
+CLIENT.connect();
+CLIENT.on('error', err => console.error(err));
 
 app.use(cors());
 app.get('/', (req, res) => res.redirect(CLIENT_URL)) ;
