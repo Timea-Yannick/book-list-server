@@ -23,12 +23,12 @@ app.get('/test', (req, res) => res.send('Hello World!'));
 app.get('/test/*', (req, res) => res.send('no further API routes'));
 
 app.get('/api/v1/books', (req, res) => {
-  client.query('SELECT * FROM books')
-  .then(results => res.send(results.rows))
-  .catch(error => {
-    console.error(error);
-    res.sendStatus(500).send('Error select all books');
-  })
+  console.log('in route')
+  client.query(`SELECT * FROM books;`)
+  .then(results => {
+    console.log(results.rows)
+  res.send(results.rows)})
+  .catch(console.error);
 });
 
 app.get('/api/v1/books/:id', (req, res) => {
