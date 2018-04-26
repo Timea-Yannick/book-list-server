@@ -1,0 +1,1 @@
+CREATE TABLE books(book_id SERIAL PRIMARY KEY, title TEXT, author TEXT, isbn TEXT, image_url TEXT, description TEXT);
